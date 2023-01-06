@@ -1,0 +1,20 @@
+function timeConversion(s) {
+    // Write your code here
+    // 1. .substring take array 0 to 8 from hh:mm:ss"X"M. X can be either AM or PM, 00-12, no 24. We will use .split to breakdown time into smaller chunks. 
+    // 2. Use .indexOf() to determine if it's AM or PM, if not found return NO SUCH        HOUR, only take retrogade position of -1
+    // 3. 12-hour: 1-12AM, 1-12PM; Military: AM (0-11), PM (0-11) + 12
+    // 4. The conditional (ternary) operator is the only JavaScript operator that takes three operands: a condition followed by a question mark (?), then an expression to execute if the condition is truthy followed by a colon (:), and finally the expression to execute if the condition is falsy. This operator is frequently used as an alternative to an if...else statement.
+    
+    // Create time array that only take substring 0 to 8 then split it with (':')
+    const time = s.substring(0,8).split(':');
+    
+    // Find PM from time array
+    time[0] = (s.indexOf('PM') > -1) ?
+    // If true, Choice 1 (Noon = 12, After Noon + 12)
+    (time[0] == 12 ? '12': Number(time[0]) + 12):
+    // If false, Choice 2 (Change 12AM into '00' and prevent 24th hour)
+    (time[0] == 12 ? '00': time[0]);
+    
+    // Finally, we will join time with ':' for display
+    return time.join(':'); 
+}
